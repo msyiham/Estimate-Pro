@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, TouchableOpacity, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 export default function App({navigation}) {
   const [waktuSudahBerlalu, setWaktuSudahBerlalu] = useState('');
@@ -25,46 +25,49 @@ export default function App({navigation}) {
   };
 
   return (
-    <View style={styles.container}>
+  <ImageBackground source={require('./bg.png')} resizeMode='cover' style={styles.ImageBackground}>
+      <View style={styles.container}>
       <Text style={styles.title}>KALKULATOR</Text>
-      <Text style={styles.label}>Waktu Sudah Berlalu (dalam satuan jam):</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setWaktuSudahBerlalu}
-        value={waktuSudahBerlalu}
-        keyboardType="numeric"
-      />
-      <Text style={styles.label}>Sisa Waktu (dalam satuan jam):</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setSisaWaktu}
-        value={sisaWaktu}
-        keyboardType="numeric"
-      />
-      <Text style={styles.label}>Interval Waktu (dalam satuan jam):</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setIntervalWaktu}
-        value={intervalWaktu}
-        keyboardType="numeric"
-      />
-      <TouchableOpacity style={styles.button} onPress={hitungEstimasiWaktu}>
-        <Text style={{textAlign:'center', fontSize:16, fontWeight:'bold', }}>Hitung Estimasi Waktu</Text>
-      </TouchableOpacity>
-      <Text style={styles.hasil}>
-        Estimasi Sisa Waktu:
-      </Text>
-      <View style={{flexDirection:'row'}}>
-        <View style={styles.kotakhasil}>
-          <Text style={styles.hasil}>{totalEstimasiSisaWaktu}</Text>
-        </View>
+        <Text style={styles.label}>Waktu Sudah Berlalu (dalam satuan jam):</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setWaktuSudahBerlalu}
+          value={waktuSudahBerlalu}
+          keyboardType="numeric"
+        />
+        <Text style={styles.label}>Sisa Waktu (dalam satuan jam):</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setSisaWaktu}
+          value={sisaWaktu}
+          keyboardType="numeric"
+        />
+        <Text style={styles.label}>Interval Waktu (dalam satuan jam):</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setIntervalWaktu}
+          value={intervalWaktu}
+          keyboardType="numeric"
+        />
+        <TouchableOpacity style={styles.button} onPress={hitungEstimasiWaktu}>
+          <Text style={{textAlign:'center', fontSize:16, fontWeight:'bold', }}>Hitung Estimasi Waktu</Text>
+        </TouchableOpacity>
         <Text style={styles.hasil}>
-          jam
+          Estimasi Sisa Waktu:
         </Text>
-      </View>
+        <View style={{flexDirection:'row'}}>
+          <View style={styles.kotakhasil}>
+            <Text style={styles.hasil}>{totalEstimasiSisaWaktu}</Text>
+          </View>
+          <Text style={styles.hasil}>
+            jam
+          </Text>
+        </View>
 
-      <BottomBar navigation={navigation}></BottomBar>
-    </View>
+        <BottomBar navigation={navigation}></BottomBar>
+      </View>
+  </ImageBackground>
+
   );
 }
 const BottomBar = ({navigation}) => {
@@ -84,10 +87,12 @@ const BottomBar = ({navigation}) => {
     );
 };
 const styles = StyleSheet.create({
+  ImageBackground: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#A5D7E8',
     padding: 20,
   },
   bar: {

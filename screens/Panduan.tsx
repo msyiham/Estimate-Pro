@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     SafeAreaView,
     ScrollView,
-    Image,
+    ImageBackground,
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -11,10 +11,23 @@ import {
   import Icon from 'react-native-vector-icons/FontAwesome';
   const Panduan = ({navigation}) => {
     return (
+      <ImageBackground source={require('./bg.png')} resizeMode='cover' style={styles.ImageBackground}>
       <View style={styles.container}>
-        <Text style={styles.title}>Panduan</Text>
+        <ScrollView style={styles.scroll}>
+          <Text style={styles.title}>Panduan</Text>
+          <Text style={styles.isi}><Text style={{fontWeight:'bold'}}>1.</Text> Masukkan data waktu yang sudah berlalu dan data sisa waktu yang diperlukan untuk menyelesaikan proyek.</Text>
+          <Text style={styles.isi}><Text style={{fontWeight:'bold'}}>2.</Text> Data waktu yang sudah berlalu dan data sisa waktu tersebut digunakan untuk menghitung total waktu yang dibutuhkan untuk menyelesaikan proyek. </Text>
+          <Text style={styles.isi}><Text style={{fontWeight:'bold'}}>3.</Text> Tentukan interval waktu yang akan digunakan untuk melakukan perhitungan integrasi numerik metode segiempat.</Text>
+          <Text style={styles.isi}><Text style={{fontWeight:'bold'}}>4.</Text> Interval waktu dapat ditentukan dengan dengan cara mengurangi total waktu dengan waktu yang sudah berlalu pada interval waktu tersebut. </Text>
+          <Text style={styles.isi}><Text style={{fontWeight:'bold'}}>5.</Text> Setelah interval waktu ditentukan, klik tombol "Hitung Estimasi Waktu" untuk membagi total waktu yang dibutuhkan untuk menyelesaikan proyek menjadi beberapa interval waktu yang telah ditentukan sebelumnya.</Text>
+          <Text style={styles.isi}><Text style={{fontWeight:'bold'}}>6.</Text> Periksa hasil estimasi sisa waktu yang dibutuhkan untuk menyelesaikan proyek pada setiap interval waktu yang telah ditentukan sebelumnya.</Text>
+          <Text style={styles.isi}><Text style={{fontWeight:'bold'}}>7.</Text> Gunakan hasil estimasi sisa waktu tersebut untuk memperkirakan waktu selesai proyek pada setiap interval waktu yang telah ditentukan sebelumnya.</Text>
+        </ScrollView>
         <BottomBar navigation={navigation}></BottomBar>
       </View>
+    </ImageBackground>
+
+
     );
   };
   const BottomBar = ({navigation}) => {
@@ -35,17 +48,29 @@ import {
     );
   };
   const styles = StyleSheet.create({
+    ImageBackground: {
+      flex: 1,
+    },
     container: {
       flex: 1,
-      justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#A5D7E8',
       padding: 20,
+    },
+    scroll: {
+      marginBottom: 50
     },
     title: {
       fontSize: 25,
       fontWeight: 'bold',
-      marginBottom: 50,
+      marginBottom: 20,
+      color: '#0B2447',
+      textAlign:'center'
+    },
+    isi: {
+      fontSize: 20,
+      fontWeight: '400',
+      marginBottom: 5,
+      textAlign:'justify',
       color: '#0B2447',
     },
     bar: {

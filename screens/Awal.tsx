@@ -7,25 +7,30 @@ import {
     Text,
     TouchableOpacity,
     View,
+    ImageBackground,
   } from 'react-native';
 
 const Awal = ({navigation}) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Selamat Datang di Aplikasi</Text>
-      <Text style={styles.title}>Estimate Pro</Text>
-      <Logo/>
-      <Menu navigation={navigation}/>
-    </View>
+    <ImageBackground source={require('./bg.png')} resizeMode='cover' style={styles.ImageBackground}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Selamat Datang di Aplikasi</Text>
+        <Text style={styles.title}>Estimate Pro</Text>
+        <Logo/>
+        <Menu navigation={navigation}/>
+      </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  ImageBackground: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#A5D7E8',
+    justifyContent: 'center'
   },
   title: {
     fontSize: 25,
